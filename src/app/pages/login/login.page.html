@@ -1,13 +1,37 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="login-content">
+  <div class="login-container">
+    <div class="circle-background">
+      <img src="assets/elements/logo.png" alt="Logo">
+    </div>
+    <h2>Bem-vindo de volta!</h2>
+    <p class="login-instruction">Logue na sua conta.</p>
+    <form>
+      <ion-item>
+        <ion-label position="floating" class="input-label">Usuário</ion-label>
+        <ion-input type="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" class="input-label">Senha</ion-label>
+        <ion-input type="password" required></ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit" class="login-button">Logar</ion-button>
+    </form>
+    <p class="forgot-password">Esqueceu a senha?</p>
+    <p class="register-text">Não tem uma conta? <a href="/register">Registre-se</a></p>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="social-login">
+      <h3>Ou entre com</h3>
+      <div class="social-buttons">
+        <ion-button class="social-button" color="primary">
+          <ion-icon name="logo-google"></ion-icon>
+        </ion-button>
+        <ion-button class="social-button" color="primary">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </ion-button>
+        <ion-button class="social-button" color="primary">
+          <ion-icon name="logo-x"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
 </ion-content>
