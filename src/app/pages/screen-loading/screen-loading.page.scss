@@ -14,13 +14,13 @@ ion-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 250px;
+    margin-top: 150px;
 }
 
 .circle-background {
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: 240px;
+    height: 240px;
     background-color: white;
     border-radius: 50%;
     display: flex;
@@ -31,7 +31,7 @@ ion-content {
 
 .circle-background img {
     position: absolute;
-    width: 140px;
+    width: 130px;
     height: auto;
 }
 

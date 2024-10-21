@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="register-content">
+  <div class="register-container">
+    <div class="circle-background">
+      <img src="assets/elements/logo.png" alt="Logo">
+    </div>
+    <h2>Bem-vindo!</h2>
+    <p class="register-instruction">Registre a sua conta.</p>
+    <form>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Nome" id="nome" type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Sobrenome" id="sobrenome" type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Data de Nascimento" type="date" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Usuário" type="username" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Email" placeholder="email@domain.com" type="email"
+          required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Senha" type="password" required>
+          <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Confirmar Senha" type="password" required>
+          <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit" class="register-button">Criar Conta</ion-button>
+    </form>
+    <p class="login-text">Já tem conta? <a href="/login">Logue-se</a></p>
+  </div>
 </ion-content>

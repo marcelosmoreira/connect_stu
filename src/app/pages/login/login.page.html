@@ -7,16 +7,19 @@
     <p class="login-instruction">Logue na sua conta.</p>
     <form>
       <ion-item>
-        <ion-label position="floating" class="input-label">Usuário</ion-label>
-        <ion-input type="email" required></ion-input>
+        <ion-input labelPlacement="stacked" label="Usuário" type="username" required>
+          <ion-icon slot="start" name="people" aria-hidden="true"></ion-icon>
+        </ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" class="input-label">Senha</ion-label>
-        <ion-input type="password" required></ion-input>
+        <ion-input labelPlacement="stacked" label="Senha" type="senha" required>
+          <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
       </ion-item>
       <ion-button expand="full" type="submit" class="login-button">Logar</ion-button>
     </form>
-    <p class="forgot-password">Esqueceu a senha?</p>
+    <p class="forgot-password">Esqueceu a senha? <a href="/recover-pass">Clique Aqui</a></p>
     <p class="register-text">Não tem uma conta? <a href="/register">Registre-se</a></p>
 
     <div class="social-login">

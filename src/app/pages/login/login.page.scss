@@ -14,8 +14,8 @@ ion-content {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    width: 90%;
-    max-width: 400px;
+    width: 100%;
+    max-width: 500px;
     height: 100%;
     margin: auto;
     background: white;
@@ -28,7 +28,7 @@ ion-content {
     width: 100px;
     height: 100px;
     background-color: #ffffff;
-    border-radius: 50%;
+    border-radius: 70%;
     margin: 0 auto 20px;
     display: flex;
     justify-content: center;
@@ -37,7 +37,7 @@ ion-content {
 }
 
 .circle-background img {
-    width: 70px;
+    width: 100px;
     height: auto;
 }
 
@@ -85,9 +85,14 @@ ion-input {
 }
 
 .forgot-password {
-    margin-top: 15px;
+    margin-top: 25px;
+    color: #001F3F;
+    text-align: center;
+}
+
+.forgot-password a {
     color: #007BFF;
-    cursor: pointer;
+    text-decoration: none;
 }
 
 .register-text {
