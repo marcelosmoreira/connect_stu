@@ -5,12 +5,17 @@
     </div>
     <h2>Recuperação de Senha</h2>
     <p class="recover-pass-instruction">Informe um email que esteja cadastrado.</p>
-    <form>
+    <form [formGroup]="recoverPassForm" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-input labelPlacement="stacked" label="Email" placeholder="email@domain.com" type="email" required>
+        <ion-input formControlName="email" labelPlacement="stacked" label="Email" placeholder="email@domain.com" type="email">
+          <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
         </ion-input>
       </ion-item>
-      <ion-button expand="full" type="submit" class="recover-pass-button">Enviar Solicitação</ion-button>
+      <div *ngIf="recoverPassForm.get('email')?.touched && recoverPassForm.get('email')?.invalid">
+        <p *ngIf="recoverPassForm.get('email')?.hasError('required')" class="error-message">O email é obrigatório.</p>
+        <p *ngIf="recoverPassForm.get('email')?.hasError('email')" class="warning-message">Insira um email válido.</p>
+      </div>
+      <ion-button expand="full" type="submit" class="recover-pass-button" [disabled]="recoverPassForm.invalid">Enviar Solicitação</ion-button>
     </form>
   </div>
 </ion-content>

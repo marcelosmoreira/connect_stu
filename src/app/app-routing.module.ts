@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/screen-loading/screen-loading.module').then(m => m.ScreenLoadingPageModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
-  },
-  {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   },
@@ -27,6 +23,10 @@ const routes: Routes = [
     path: 'recover-pass',
     loadChildren: () => import('./pages/recover-pass/recover-pass.module').then(m => m.RecoverPassPageModule)
   },
+  {
+    path: 'changepassword',
+    loadChildren: () => import('./pages/changepassword/changepassword.module').then(m => m.ChangepasswordPageModule)
+  }
 ];
 
 @NgModule({
