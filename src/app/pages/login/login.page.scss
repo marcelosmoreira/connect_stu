@@ -129,10 +129,24 @@ ion-input {
     --box-shadow: none;
 }
 
+.social-login h3 {
+    color: #001F3F;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .validation-message {
     color: #FF0000;
     font-size: 12px;
     font-style: italic;
     margin-top: 10px;
     margin-left: 12px;
+}
+
+.success-message {
+  color: #007BFF;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 10px;
+  margin-left: 12px;
 }

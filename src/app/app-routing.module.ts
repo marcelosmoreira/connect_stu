@@ -24,8 +24,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/recover-pass/recover-pass.module').then(m => m.RecoverPassPageModule)
   },
   {
-    path: 'changepassword',
-    loadChildren: () => import('./pages/changepassword/changepassword.module').then(m => m.ChangepasswordPageModule)
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   }
 ];
 

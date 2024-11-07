@@ -7,15 +7,16 @@
     <p class="login-instruction">Logue na sua conta.</p>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-input labelPlacement="stacked" label="Usuário" type="text" formControlName="user" required>
-          <ion-icon slot="start" name="people" aria-hidden="true"></ion-icon>
+        <ion-input labelPlacement="stacked" label="E-mail" type="email" formControlName="email" required>
+          <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
         </ion-input>
       </ion-item>
-      <div *ngIf="loginForm.get('user')?.touched && loginForm.get('user')?.invalid" class="validation-message">
-        <p *ngIf="loginForm.get('user')?.hasError('required')">Usuário é obrigatório.</p>
+      <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="validation-message">
+        <p *ngIf="loginForm.get('email')?.hasError('required')">E-mail é obrigatório.</p>
+        <p *ngIf="loginForm.get('email')?.hasError('email')">Por favor, insira um e-mail válido.</p>
       </div>
       <ion-item>
-        <ion-input labelPlacement="stacked" label="password" type="password" formControlName="password" required>
+        <ion-input labelPlacement="stacked" label="Senha" type="password" formControlName="password" required>
           <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
           <ion-input-password-toggle slot="end"></ion-input-password-toggle>
         </ion-input>
@@ -23,20 +24,27 @@
       <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="validation-message">
         <p *ngIf="loginForm.get('password')?.hasError('required')">Senha é obrigatória.</p>
       </div>
+    <div *ngIf="errorMessage" class="validation-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+    <div *ngIf="successMessage" class="success-message">
+      <p>{{ successMessage }}</p>
+    </div>
       <ion-button expand="full" type="submit" class="login-button" [disabled]="loginForm.invalid">Logar</ion-button>
     </form>
     <p class="forgot-password">Esqueceu a senha? <a href="/recover-pass">Clique Aqui</a></p>
     <p class="register-text">Não tem uma conta? <a href="/register">Registre-se</a></p>
+    
     <div class="social-login">
       <h3>Ou entre com</h3>
       <div class="social-buttons">
-        <ion-button class="social-button" color="primary">
+        <ion-button class="social-button" color="primary" (click)="loginWithGoogle()">
           <ion-icon name="logo-google"></ion-icon>
         </ion-button>
-        <ion-button class="social-button" color="primary">
+        <ion-button class="social-button" color="primary" (click)="loginWithFacebook()">
           <ion-icon name="logo-facebook"></ion-icon>
         </ion-button>
-        <ion-button class="social-button" color="primary">
+        <ion-button class="social-button" color="primary" (click)="loginWithX()">
           <ion-icon name="logo-x"></ion-icon>
         </ion-button>
       </div>
