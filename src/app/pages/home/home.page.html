@@ -1,13 +1,112 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="home-content">
+  <div class="home-container">
+    <div class="home-header">
+      <div class="home-header-top">
+        <span><b>ConnectStu</b></span>
+        <ion-button fill="clear" class="notifications-button">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </ion-button>
+      </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <ion-segment>
+        <ion-segment-button value="recentes" content-id="recentes">
+          <ion-label>Recentes</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="trends" content-id="trends">
+          <ion-label>Em Alta</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div class="home-search">
+      <ion-item lines="none">
+        <ion-input placeholder="O que você gostaria de saber?">
+          <ion-icon slot="start" name="search-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+    </div>
+
+    <ion-segment-view class="home-posts">
+      <ion-segment-content id="recentes">
+        <ion-list [scrollTop]="true">
+          <ion-item lines="none">
+            <ion-card>
+              <div class="card-content">
+                <img class="card-img" src="assets/elements/logo.png" alt="user profile picture">
+                <ion-card-content>
+                  Here's a small text description for the card content. Nothing more, nothing less.
+                </ion-card-content>
+              </div>
+              <div class="card-icons">
+                <ion-button fill="clear">
+                  <ion-icon slot="start" name="heart" aria-hidden="true"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear">
+                  <ion-icon slot="start" name="chatbubbles" aria-hidden="true"></ion-icon>
+                </ion-button>
+              </div>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+      </ion-segment-content>
+
+      <ion-segment-content id="trends">
+        <ion-list lines="inset">
+          <ion-item lines="none">
+            <ion-card>
+              <div class="card-content">
+                <img class="card-img" src="assets/elements/logo.png" alt="user profile picture">
+                <ion-card-content>
+                  Here's a small text description for the card content. Nothing more, nothing less.
+                </ion-card-content>
+              </div>
+              <div class="card-icons">
+                <ion-button fill="clear">
+                  <ion-icon slot="start" name="heart" aria-hidden="true"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear">
+                  <ion-icon slot="start" name="chatbubbles" aria-hidden="true"></ion-icon>
+                </ion-button>
+              </div>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+      </ion-segment-content>
+    </ion-segment-view>
+
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button onkeydown tab="/" aria-label="Home">
+          <ion-icon name="home" aria-hidden="true"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button tab="/add" aria-label="Add">
+          <ion-icon name="add-circle-outline" aria-hidden="true"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button tab="/bookmarks" aria-label="Bookmarks">
+          <ion-icon name="bookmarks-outline" aria-hidden="true"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+
+  </div>
 </ion-content>
+
+
+<!-- Esse trecho é a implementação para quando ocorrer a conexão com o backend -->
+<!-- Estou deixando aqui por enquanto para colocar o placeholder e tirar o print para o banner logo -->
+<!-- <ion-item *ngFor="let post of posts"> -->
+<!-- <ion-card> -->
+<!--   <div class="card-content"> -->
+<!--     <img class="card-img" [src]="post.img" alt="user profile picture"> -->
+<!--     <ion-card-content>{{ post.content }}</ion-card-content> -->
+<!--   </div> -->
+<!--   <div class="card-icons"> -->
+<!--     <ion-button fill="clear"> -->
+<!--       <ion-icon slot="start" name="heart" aria-hidden="true"></ion-icon> -->
+<!--     </ion-button> -->
+<!--     <ion-button fill="clear"> -->
+<!--       <ion-icon slot="start" name="chatbubbles" aria-hidden="true"></ion-icon> -->
+<!--     </ion-button> -->
+<!--   </div> -->
+<!-- </ion-card> -->
+<!-- </ion-item> -->
