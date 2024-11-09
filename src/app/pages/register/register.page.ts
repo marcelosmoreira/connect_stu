@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { Router } from '@angular/router';
-
+import { User } from '../../models/userModel'
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -14,13 +15,14 @@ export class RegisterPage {
   constructor(
     private formBuilder: FormBuilder,
     private afAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private firestore: AngularFirestore
   ) {
     this.registerForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      lastname: ['', [Validators.required, Validators.minLength(2)]],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       birthdata: ['', Validators.required],
-      user: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -49,11 +51,21 @@ export class RegisterPage {
 
   async onSubmit() {
     if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.value;
+      const { email, password} = this.registerForm.value;
       try {
         const userCredential = await this.afAuth.createUserWithEmailAndPassword(email, password);
-        
-        console.log('Usuário registrado com sucesso', userCredential);
+        const newUser: User = {
+          name: this.registerForm.value.name,
+          lastName: this.registerForm.value.lastName,
+          username: this.registerForm.value.username,
+          birthDate: new Date(this.registerForm.value.birthDate),
+          createdAT: new Date()
+        };
+  
+       
+        await this.firestore.collection('users').doc(userCredential.user?.uid).set(newUser);
+  
+        console.log('Usuário registrado e salvo no Firestore com sucesso');
         this.router.navigate(['/home']);
 
       } catch (error) {
