@@ -1,0 +1,45 @@
+<ion-content class="profile-content">
+  <div class="profile-container">
+    <div class="circle-background">
+      <img src="assets/elements/logo.png" alt="Logo">
+    </div>
+    <h2>Seus Dados</h2>
+    <form>
+      <ion-item>
+        <ion-input readonly value="Nome Teste" labelPlacement="stacked" label="Nome" type="text">
+          <!-- <ion-input [value]="user?.name" labelPlacement="stacked" label="Nome" type="text"> -->
+          <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input readonly value="Sobrenome Teste" labelPlacement="stacked" label="Sobrenome" type="text">
+          <!-- <ion-input [value]="user?.lastname" labelPlacement="stacked" label="Sobrenome" type="text"> -->
+          <ion-icon slot="start" name="person-add" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input readonly value="1999-01-01" labelPlacement="stacked" label="Data de Nascimento" type="date">
+          <!-- <ion-input [value]="user?.birthDate" labelPlacement="stacked" label="Data de Nascimento" type="date"> -->
+          <ion-icon slot="start" name="calendar" aria-hidden="true" class="calendar-icon"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input readonly value="@usuarioteste" labelPlacement="stacked" label="Nome de Usuário" type="text">
+          <!-- <ion-input [value]="user?.username" labelPlacement="stacked" label="Nome de Usuário" type="text"> -->
+          <ion-icon slot="start" name="people" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input readonly value="email@domain.com" labelPlacement="stacked" label="Email"
+          placeholder="email@domain.com" type="email">
+          <!-- <ion-input [value]="user?.email" labelPlacement="stacked" label="Email" placeholder="email@domain.com" type="email"> -->
+          <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <div class="buttons-container">
+        <ion-button [routerLink]="['/home']" expand="full" type="submit" class="profile-button">Voltar</ion-button>
+        <ion-button [routerLink]="['/profile/update']" expand="full" type="submit" class="profile-button">Editar</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

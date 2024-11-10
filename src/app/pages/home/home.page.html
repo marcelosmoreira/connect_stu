@@ -3,9 +3,13 @@
     <div class="home-header">
       <div class="home-header-top">
         <span><b>ConnectStu</b></span>
-        <ion-button fill="clear" class="notifications-button">
-          <ion-icon name="notifications-outline"></ion-icon>
-        </ion-button>
+        <div class="home-header-top-container">
+          <ion-button fill="clear" class="notifications-button">
+            <ion-icon name="notifications-outline"></ion-icon>
+          </ion-button>
+          <img [routerLink]="['/profile']" class="profile-img" src="assets/elements/logo.png" alt="user profile picture">
+          <!-- <img class="profile-img" [src]="loggedUser?.image" alt="user profile picture"> -->
+        </div>
       </div>
 
       <ion-segment>
