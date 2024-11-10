@@ -6,6 +6,7 @@
     <h2>Bem-vindo!</h2>
     <p class="register-instruction">Registre a sua conta.</p>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Nome -->
       <ion-item>
         <ion-input formControlName="firstName" labelPlacement="stacked" label="Nome" type="text">
           <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
@@ -15,6 +16,8 @@
         <p *ngIf="registerForm.get('firstName')?.hasError('required')" class="error-message">O nome é obrigatório.</p>
         <p *ngIf="registerForm.get('firstName')?.hasError('minlength')" class="warning-message">O nome deve ter pelo menos 2 caracteres.</p>
       </div>
+      
+      <!-- Sobrenome -->
       <ion-item>
         <ion-input formControlName="lastName" labelPlacement="stacked" label="Sobrenome" type="text">
           <ion-icon slot="start" name="person-add" aria-hidden="true"></ion-icon>
@@ -23,15 +26,19 @@
       <div *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid">
         <p *ngIf="registerForm.get('lastName')?.hasError('required')" class="error-message">O sobrenome é obrigatório.</p>
         <p *ngIf="registerForm.get('lastName')?.hasError('minlength')" class="warning-message">O sobrenome deve ter pelo menos 2 caracteres.</p>
-      </div> 
+      </div>
+
+      <!-- Data de Nascimento -->
       <ion-item>
         <ion-input formControlName="birthDate" labelPlacement="stacked" label="Data de Nascimento" type="date">
           <ion-icon slot="start" name="calendar" aria-hidden="true" class="calendar-icon" (click)="openDatePicker()"></ion-icon>
         </ion-input>
-      </ion-item>               
+      </ion-item>
       <div *ngIf="registerForm.get('birthDate')?.touched && registerForm.get('birthDate')?.invalid">
         <p class="error-message">Data de nascimento é obrigatória.</p>
       </div>
+
+      <!-- Usuário -->
       <ion-item>
         <ion-input labelPlacement="stacked" label="Usuário" type="text" formControlName="username" required>
           <ion-icon slot="start" name="people" aria-hidden="true"></ion-icon>
@@ -40,7 +47,10 @@
       <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid">
         <p *ngIf="registerForm.get('username')?.hasError('required')" class="error-message">Usuário é obrigatório.</p>
         <p *ngIf="registerForm.get('username')?.hasError('minlength')" class="warning-message">O usuário deve ter pelo menos 3 caracteres.</p>
-      </div>     
+        <p *ngIf="registerForm.get('username')?.hasError('hasSpaces')" class="error-message">O nome de usuário não pode conter espaços.</p>
+      </div>
+
+      <!-- Email -->
       <ion-item>
         <ion-input formControlName="email" labelPlacement="stacked" label="Email" placeholder="email@domain.com" type="email">
           <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
@@ -49,26 +59,30 @@
       <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
         <p *ngIf="registerForm.get('email')?.hasError('required')" class="error-message">O email é obrigatório.</p>
         <p *ngIf="registerForm.get('email')?.hasError('email')" class="warning-message">Insira um email válido.</p>
-      </div> 
+        <p *ngIf="registerForm.get('email')?.hasError('hasSpaces')" class="error-message">O email não pode conter espaços.</p>
+      </div>
+
+      <!-- Senha -->
       <ion-item>
         <ion-input formControlName="password" labelPlacement="stacked" label="Senha" type="password">
           <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
-          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
         </ion-input>
       </ion-item>
       <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
         <p *ngIf="registerForm.get('password')?.hasError('required')" class="error-message">A senha é obrigatória.</p>
         <p *ngIf="registerForm.get('password')?.hasError('minlength')" class="warning-message">A senha deve ter pelo menos 6 caracteres.</p>
-      </div>  
+      </div>
+
+      <!-- Confirmar Senha -->
       <ion-item>
         <ion-input formControlName="confirmPassword" labelPlacement="stacked" label="Confirmar Senha" type="password">
           <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
-          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
         </ion-input>
       </ion-item>
       <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.errors?.['mismatch']">
         <p class="error-message">As senhas não coincidem.</p>
       </div>
+
       <ion-button expand="full" type="submit" class="register-button" [disabled]="registerForm.invalid">Criar Conta</ion-button>
     </form>
     <p class="login-text">Já tem conta? <a href="/login">Logue-se</a></p>

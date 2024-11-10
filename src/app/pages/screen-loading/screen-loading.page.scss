@@ -4,17 +4,20 @@
     align-items: center;
     height: 100vh;
     text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 ion-content {
     --background: #007BFF;
+    animation: backgroundFade 2s ease-in-out;
 }
 
 .logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 150px;
+    margin-top: 100px;
+    animation: slideDown 1s ease-out;
 }
 
 .circle-background {
@@ -27,12 +30,14 @@ ion-content {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    animation: scaleUp 1s ease-in-out;
 }
 
 .circle-background img {
     position: absolute;
     width: 130px;
     height: auto;
+    animation: rotateLogo 3s linear infinite;
 }
 
 h2 {
@@ -40,6 +45,7 @@ h2 {
     color: white;
     font-size: 2rem;
     font-weight: bold;
+    animation: fadeIn 2s ease-in-out;
 }
 
 p {
@@ -47,4 +53,46 @@ p {
     color: #001F3F;
     font-size: 1.2rem;
     font-weight: bold;
+    animation: slideIn 1s ease-out;
+}
+
+/* Classe para parar a rotação */
+.stop-rotation {
+    animation: rotateBack 0.5s ease forwards;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes backgroundFade {
+    0% { background-color: #005BB5; }
+    100% { background-color: #007BFF; }
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleUp {
+    0% { transform: scale(0.8); }
+    100% { transform: scale(1); }
+}
+
+@keyframes rotateLogo {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateBack {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes slideIn {
+    0% { transform: translateX(-20px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
 }
