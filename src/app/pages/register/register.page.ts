@@ -12,8 +12,6 @@ import { User } from '../../models/userModel';
 })
 export class RegisterPage {
   registerForm: FormGroup;
-  usernameHasSpace: boolean = false;
-  emailHasSpace: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,9 +23,9 @@ export class RegisterPage {
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       birthDate: ['', Validators.required],
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', [Validators.required, Validators.minLength(3), this.noSpacesValidator]],
+      email: ['', [Validators.required, Validators.email, this.noSpacesValidator]],
+      password: ['', [Validators.required, Validators.minLength(6), this.noSpacesValidator]],
       confirmPassword: ['', Validators.required]
     }, { validator: this.checkPasswords });
   }
@@ -45,17 +43,15 @@ export class RegisterPage {
     return password === confirmPassword ? null : { mismatch: true };
   }
 
-  validateSpaces() {
-    const username = this.registerForm.get('username')?.value;
-    const email = this.registerForm.get('email')?.value;
-
-    this.usernameHasSpace = /\s/.test(username);
-    this.emailHasSpace = /\s/.test(email);
+  noSpacesValidator(control: any) {
+    if (control.value && control.value.indexOf(' ') !== -1) {
+      return { hasSpaces: true };
+    }
+    return null;
   }
 
   async onSubmit() {
-    this.validateSpaces();
-    if (this.registerForm.valid && !this.usernameHasSpace && !this.emailHasSpace) {
+    if (this.registerForm.valid) {
       const { email, password } = this.registerForm.value;
       try {
         const userCredential = await this.afAuth.createUserWithEmailAndPassword(email, password);
@@ -74,11 +70,10 @@ export class RegisterPage {
         console.log('Erro ao registrar usuário:', error);
       }
     } else {
-      console.log('Formulário inválido', this.registerForm.errors);
+      console.log('Formulário inválido');
     }
   }
 
-  // Abre o seletor de data
   openDatePicker() {
     const dateInput = document.querySelector('input[type="date"]') as HTMLInputElement;
     if (dateInput) {

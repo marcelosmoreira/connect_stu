@@ -1,43 +1,67 @@
 ion-content {
     --background: #007BFF;
+    padding: 0;
+    margin: 0;
+    height: 100%;
 }
 
 .login-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 }
 
 .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 150px 70px;
+    padding: 50px 70px;
     width: 100%;
     max-width: 500px;
-    height: auto;
     margin: auto;
     background: white;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.circle-background {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+@media screen and (max-width: 768px) {
+    ion-content {
+        --background: white;
+    }
 
-.circle-background img {
-    width: 100px;
-    height: auto;
+    .login-container {
+        padding: 30px 20px;
+        width: 90%;
+        max-width: 100%;
+        min-height: 100vh;
+    }
+
+    .login-button {
+        padding: 16px 32px;
+        font-size: 16px;
+        text-align: center;
+        background-color: #007BFF !important;
+        border: none;
+        color: rgb(0, 0, 0) !important;
+        width: 100%;
+        border-radius: 30px;
+        height: 56px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1.1;
+    }
+
+    .login-button::part(native) {
+        border-radius: 30px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
 }
 
 h2 {
@@ -45,6 +69,11 @@ h2 {
     color: #001F3F;
     font-size: 24px;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
 }
 
 .login-instruction {
@@ -59,12 +88,14 @@ ion-item {
     --background: rgba(255, 255, 255, 0.8);
     --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
+    width: 100%;
 }
 
 ion-input {
     min-height: 56px;
     color: #001F3F;
     border-radius: 30px;
+    width: 100%;
 }
 
 .input-label {
@@ -72,11 +103,42 @@ ion-input {
     font-size: 16px;
 }
 
+@media screen and (max-width: 768px) {
+    .login-container {
+        padding: 30px 20px;
+        width: 90%;
+        max-width: 100%;
+    }
+
+    .login-button {
+        padding: 20px;
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .login-instruction {
+        font-size: 14px;
+    }
+
+    ion-item {
+        width: 100%;
+    }
+
+    .login-container {
+        min-height: 100vh;
+    }
+}
+
 .login-button {
     margin-top: 10px;
     background-color: #007BFF;
     border-radius: 30px;
     --box-shadow: none;
+    height: 56px;
 }
 
 .login-button::part(native) {

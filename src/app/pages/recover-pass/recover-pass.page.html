@@ -16,13 +16,16 @@
         <p *ngIf="recoverPassForm.get('email')?.hasError('required')" class="error-message">O email é obrigatório.</p>
         <p *ngIf="recoverPassForm.get('email')?.hasError('email')" class="warning-message">Insira um email válido.</p>
       </div>
-    <div *ngIf="successMessage" class="success-message">
-      <p>{{ successMessage }}</p>
-    </div>
-    <div *ngIf="errorMessage" class="error-message">
-      <p>{{ errorMessage }}</p>
-    </div>
+      <div *ngIf="successMessage" class="success-message">
+        <p>{{ successMessage }}</p>
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        <p>{{ errorMessage }}</p>
+      </div>
       <ion-button expand="full" type="submit" class="recover-pass-button" [disabled]="recoverPassForm.invalid">Enviar Solicitação</ion-button>
     </form>
+    <ion-button class="back-to-login-button" (click)="goToLogin()">
+      <ion-icon name="arrow-back" slot="start"></ion-icon>
+    </ion-button>
   </div>
 </ion-content>

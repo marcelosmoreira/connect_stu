@@ -16,7 +16,7 @@
         <p *ngIf="registerForm.get('firstName')?.hasError('required')" class="error-message">O nome é obrigatório.</p>
         <p *ngIf="registerForm.get('firstName')?.hasError('minlength')" class="warning-message">O nome deve ter pelo menos 2 caracteres.</p>
       </div>
-      
+
       <!-- Sobrenome -->
       <ion-item>
         <ion-input formControlName="lastName" labelPlacement="stacked" label="Sobrenome" type="text">
@@ -38,7 +38,7 @@
         <p class="error-message">Data de nascimento é obrigatória.</p>
       </div>
 
-      <!-- Usuário -->
+      <!-- Nome de Usuário -->
       <ion-item>
         <ion-input labelPlacement="stacked" label="Usuário" type="text" formControlName="username" required>
           <ion-icon slot="start" name="people" aria-hidden="true"></ion-icon>
@@ -71,6 +71,7 @@
       <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
         <p *ngIf="registerForm.get('password')?.hasError('required')" class="error-message">A senha é obrigatória.</p>
         <p *ngIf="registerForm.get('password')?.hasError('minlength')" class="warning-message">A senha deve ter pelo menos 6 caracteres.</p>
+        <p *ngIf="registerForm.get('password')?.hasError('hasSpaces')" class="error-message">A senha não pode conter espaços.</p>
       </div>
 
       <!-- Confirmar Senha -->

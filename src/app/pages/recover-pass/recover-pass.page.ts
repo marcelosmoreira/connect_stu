@@ -37,7 +37,6 @@ export class RecoverPassPage implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 3000); 
-  
       } catch (error) {
         console.log('Erro ao enviar o e-mail de recuperação:', error);
         this.errorMessage = 'Ocorreu um erro ao enviar o e-mail. Verifique o e-mail fornecido e tente novamente.';
@@ -48,5 +47,9 @@ export class RecoverPassPage implements OnInit {
       this.successMessage = '';
       console.log('Formulário inválido');
     }
-  }  
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 }
