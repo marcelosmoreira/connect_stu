@@ -12,6 +12,8 @@ import { User } from '../../models/userModel';
 })
 export class RegisterPage {
   registerForm: FormGroup;
+  usernameHasSpace: boolean = false;
+  emailHasSpace: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,15 +45,17 @@ export class RegisterPage {
     return password === confirmPassword ? null : { mismatch: true };
   }
 
-  openDatePicker() {
-    const dateInput = document.querySelector('input[type="date"]') as HTMLInputElement;
-    if (dateInput) {
-      dateInput.showPicker();
-    }
+  validateSpaces() {
+    const username = this.registerForm.get('username')?.value;
+    const email = this.registerForm.get('email')?.value;
+
+    this.usernameHasSpace = /\s/.test(username);
+    this.emailHasSpace = /\s/.test(email);
   }
 
   async onSubmit() {
-    if (this.registerForm.valid) {
+    this.validateSpaces();
+    if (this.registerForm.valid && !this.usernameHasSpace && !this.emailHasSpace) {
       const { email, password } = this.registerForm.value;
       try {
         const userCredential = await this.afAuth.createUserWithEmailAndPassword(email, password);
@@ -66,12 +70,19 @@ export class RegisterPage {
         await this.firestore.collection('users').doc(userCredential.user?.uid).set(newUser);
         console.log('Usuário registrado e salvo no Firestore com sucesso');
         this.router.navigate(['/login']);
-
       } catch (error) {
         console.log('Erro ao registrar usuário:', error);
       }
     } else {
       console.log('Formulário inválido', this.registerForm.errors);
+    }
+  }
+
+  // Abre o seletor de data
+  openDatePicker() {
+    const dateInput = document.querySelector('input[type="date"]') as HTMLInputElement;
+    if (dateInput) {
+      dateInput.showPicker();
     }
   }
 }

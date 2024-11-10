@@ -7,20 +7,20 @@ ion-content {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 0 20px;
 }
 
 .register-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    width: 100%;
+    padding: 50px;
     max-width: 500px;
     height: auto;
     margin: auto;
     background: white;
-    border-radius: 30px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
 .circle-background {
@@ -74,10 +74,11 @@ ion-input {
 }
 
 .register-button {
-    margin-top: 10px;
+    margin-top: 20px;
     background-color: #007BFF;
     border-radius: 50px;
     --box-shadow: none;
+    width: 100%;
 }
 
 .register-button::part(native) {
@@ -107,6 +108,34 @@ ion-input {
     font-size: 12px;
     font-style: italic;
     margin-left: 10px;
+}
+
+.social-login {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: -15px;
+}
+
+.social-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    --box-shadow: none;
+}
+
+.social-login h3 {
+    color: #001F3F;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .calendar-icon {
