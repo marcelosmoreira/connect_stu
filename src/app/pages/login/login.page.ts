@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { GoogleAuthProvider, FacebookAuthProvider, OAuthProvider } from 'firebase/auth';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,19 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.initializeGoogleAuth();
+  }
+
+  private async initializeGoogleAuth() {
+    if (typeof window !== 'undefined' && window.Capacitor) {
+      GoogleAuth.initialize({
+        clientId: '894817520084-6nee0nlld2vt1dubmkj41lem1sjfaku6.apps.googleusercontent.com',
+        scopes: ['profile', 'email'],
+        grantOfflineAccess: true,
+      });
+    }
+  }
 
   async onSubmit() {
     if (this.loginForm.valid) {
@@ -60,27 +73,29 @@ export class LoginPage implements OnInit {
   }
   async loginWithGoogle() {
     try {
-      const provider = new GoogleAuthProvider();
-      const result = await this.afAuth.signInWithPopup(provider);
-      const user = result.user;
+      console.log("Iniciando o login com Google...");
+      await GoogleAuth.signIn();
+      console.log("Login bem-sucedido com Google.");
       this.successMessage = 'Login com Google bem-sucedido!';
       this.errorMessage = '';
       setTimeout(() => {
-        this.router.navigate(['/home']).then(() => {
-          window.location.reload();
-        });
+        this.router.navigate(['/home']);
       }, 3000);
     } catch (error) {
-      console.log('Erro ao fazer login com Google:', error);
-      this.successMessage = '';
-      this.errorMessage = 'Erro ao autenticar com Google. Tente novamente.';
+      if (error=== 'popup_closed_by_user') {
+        this.errorMessage = 'Login cancelado. Por favor, tente novamente.';
+      } else {
+        console.log('Erro ao fazer login com Google:', error);
+        this.errorMessage = 'Erro ao autenticar com Google. Tente novamente.';
+      }
     }
   }
   async loginWithFacebook() {
     try {
-      const provider = new FacebookAuthProvider();
+      const provider = new GoogleAuthProvider();
       const result = await this.afAuth.signInWithPopup(provider);
-      this.successMessage = 'Login com Facebook bem-sucedido!';
+      const user = result.user;
+      this.successMessage = 'Login com Google bem-sucedido!';
       this.errorMessage = '';
       setTimeout(() => {
         this.router.navigate(['/home']).then(() => {
