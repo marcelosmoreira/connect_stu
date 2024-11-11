@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { GoogleAuthProvider, FacebookAuthProvider, OAuthProvider } from 'firebase/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { GoogleAuthProvider, FacebookAuthProvider, OAuthProvider, GithubAuthProvider, getIdToken } from 'firebase/auth';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { User } from '../../models/userModel';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,8 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private afAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private firestore: AngularFirestore
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -74,10 +77,40 @@ export class LoginPage implements OnInit {
   async loginWithGoogle() {
     try {
       console.log("Iniciando o login com Google...");
-      await GoogleAuth.signIn();
+      const googleUser = await GoogleAuth.signIn();
       console.log("Login bem-sucedido com Google.");
+      
+      // Acessando dados do usuário
+      const userEmail = googleUser.email;
+      const userName = googleUser.name;
+      const serverAuthCode = googleUser.authentication.idToken;
+      // Obter o idToken necessário para autenticação no Firebase
+     // Criar as credenciais do Firebase com o idToken
+     const credential = GoogleAuthProvider.credential(serverAuthCode);
+
+    // Sign in com Firebase Authentication
+    const userCredential = await this.afAuth.signInWithCredential(credential);
+     // Verificar se o usuário já existe no Firestore
+    const userRef = this.firestore.collection('users').doc(userCredential.user?.uid);
+    const userDoc = await userRef.get().toPromise()
+
+    if (!userDoc?.exists) {
+      // Caso não exista, registrar o usuário no Firestore
+      await userRef.set({
+        email: userEmail,
+        name: userName,
+        createdAT: new Date(),
+      });
+      console.log('Novo usuário registrado no Firestore');
+    }
+
+    // Armazenar dados no localStorage
+    localStorage.setItem('userEmail', userEmail);
+    localStorage.setItem('userName', userName);
+
       this.successMessage = 'Login com Google bem-sucedido!';
       this.errorMessage = '';
+
       setTimeout(() => {
         this.router.navigate(['/home']);
       }, 3000);
@@ -92,22 +125,32 @@ export class LoginPage implements OnInit {
   }
   async loginWithFacebook() {
     try {
-      const provider = new GoogleAuthProvider();
+      const provider = new FacebookAuthProvider();
+      provider.addScope('email'); 
       const result = await this.afAuth.signInWithPopup(provider);
       const user = result.user;
-      this.successMessage = 'Login com Google bem-sucedido!';
+      
+      console.log('Login bem-sucedido com Facebook:', user);
+      this.successMessage = 'Login com Facebook bem-sucedido!';
       this.errorMessage = '';
+      
       setTimeout(() => {
-        this.router.navigate(['/home']).then(() => {
-          window.location.reload();
-        });
+        this.router.navigate(['/home']);
       }, 3000);
+      
     } catch (error) {
       console.log('Erro ao fazer login com Facebook:', error);
+      
+      if (error === 'auth/argument-error') {
+        this.errorMessage = 'Argumentos inválidos. Verifique a configuração do Firebase e do Facebook.';
+      } else {
+        this.errorMessage = 'Erro ao autenticar com Facebook. Tente novamente.';
+      }
+      
       this.successMessage = '';
-      this.errorMessage = 'Erro ao autenticar com Facebook. Tente novamente.';
     }
   }
+  
   async loginWithX() {
     try {
       const provider = new OAuthProvider('twitter.com');
@@ -131,5 +174,23 @@ export class LoginPage implements OnInit {
 
   get password() {
     return this.loginForm.get('password');
+  }
+
+  async loginWithGitHub() {
+    try {
+    const provider = new GithubAuthProvider()
+    const result = await this.afAuth.signInWithPopup(provider)
+    this.successMessage = 'Login com X (Twitter) bem-sucedido!';
+      this.errorMessage = '';
+      setTimeout(() => {
+        this.router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
+      }, 3000);
+    }catch (error) {
+        console.log('Erro ao fazer login com GitHub:', error);
+        this.successMessage = '';
+        this.errorMessage = 'Erro ao autenticar com GitHub. Tente novamente.';
+      }
   }
 }

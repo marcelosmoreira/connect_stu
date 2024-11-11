@@ -1,11 +1,18 @@
-apply plugin: 'com.android.application'
+
+plugins {
+  id 'com.android.application'
+
+  // Add the Google services Gradle plugin
+  id 'com.google.gms.google-services'
+
+}
 
 android {
-    namespace "io.ionic.starter"
+    namespace "com.connectstu.androidr"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "io.ionic.starter"
-        minSdkVersion rootProject.ext.minSdkVersion
+        applicationId "com.connectstu.android"
+        minSdkVersion  23
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
@@ -40,7 +47,19 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
     implementation project(':capacitor-cordova-android-plugins')
+
+     // Firebase SDK (BoM)
+    implementation platform('com.google.firebase:firebase-bom:33.5.1')
+
+    // Firebase Authentication
+    implementation 'com.google.firebase:firebase-auth'
+
+    // Google SignIn SDK (necessário para o login com Google)
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
+
+    // Outras dependências necessárias para seu app...
 }
+
 
 apply from: 'capacitor.build.gradle'
 

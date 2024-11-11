@@ -63,6 +63,7 @@ export class RegisterPage {
           name: this.registerForm.value.firstName,
           lastName: this.registerForm.value.lastName,
           username: this.registerForm.value.username,
+          email: email,
           birthDate: new Date(this.registerForm.value.birthDate),
           createdAT: new Date()
         };

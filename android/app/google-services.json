@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "894817520084",
+    "project_id": "project-connectstu",
+    "storage_bucket": "project-connectstu.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894817520084:android:026e64f8902e3ea50eee41",
+        "android_client_info": {
+          "package_name": "com.connectstu.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894817520084-iv61b61rvlqk8ffj6np90d62lub8qp2l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.connectstu.android",
+            "certificate_hash": "39d053a5b37d5da256fe628dd4eaf873a5932c88"
+          }
+        },
+        {
+          "client_id": "894817520084-6nee0nlld2vt1dubmkj41lem1sjfaku6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeHN4_qEPVeN7I1n9grpZ1BOW5sg9FftE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894817520084-6nee0nlld2vt1dubmkj41lem1sjfaku6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

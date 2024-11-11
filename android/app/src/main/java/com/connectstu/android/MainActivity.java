@@ -1,4 +1,5 @@
-package io.ionic.starter;
+package com.connectstu.android;
+
 
 import com.getcapacitor.BridgeActivity;
 
