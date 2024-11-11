@@ -99,8 +99,12 @@
         <ion-content class="modal-content">
           <h2><b>Nova Publicação</b></h2>
           <ion-item class="modal-item ion-padding" lines="none">
-            <ion-textarea autoGrow="true" label="" placeholder="Faça uma pergunta ou escreva uma dica..."></ion-textarea>
-          </ion-item>
+            <ion-textarea 
+              autoGrow="true" 
+              label="" 
+              placeholder="Faça uma pergunta ou escreva uma dica..."
+              [(ngModel)]="content">
+            </ion-textarea></ion-item>
         </ion-content>
       </ng-template>
     </ion-modal>

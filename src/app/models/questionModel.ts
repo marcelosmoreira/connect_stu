@@ -1,10 +1,10 @@
 export interface Question{
-    id: number,
-    userId: number,
-    title: String,
-    content: Text,
+    id?: number,
+    userId: string,
+    //title: string,
+    content: string,
     likes: number,
-    tags: string,
+   // tags: string,
     answersCount: number,
     createdAT: Date
 
