@@ -7,5 +7,6 @@ export interface Question{
    // tags: string,
     answersCount: number,
     createdAT: Date
+    username?: string; 
 
 }

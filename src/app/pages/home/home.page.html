@@ -39,17 +39,19 @@
     <ion-segment-view class="home-posts">
       <ion-segment-content id="recentes">
         <ion-list [scrollTop]="true">
-          <ion-item lines="none">
+          <ion-item *ngFor="let question of questions$ | async" lines="none">
             <ion-card>
               <div class="card-content">
                 <img class="card-img" src="assets/elements/logo.png" alt="user profile picture">
                 <ion-card-content>
-                  Here's a small text description for the card content. Nothing more, nothing less.
+                  <p><b>{{ question.username }}</b></p> 
+                  <p> {{ question.content }}</p><!-- Exibe o nome do usuário e a pergunta -->
                 </ion-card-content>
               </div>
               <div class="card-icons">
                 <ion-button fill="clear">
                   <ion-icon slot="start" name="heart" aria-hidden="true"></ion-icon>
+                  {{ question.likes }} <!-- Exibe o número de likes -->
                 </ion-button>
                 <ion-button fill="clear">
                   <ion-icon slot="start" name="chatbubbles" aria-hidden="true"></ion-icon>
@@ -59,6 +61,8 @@
           </ion-item>
         </ion-list>
       </ion-segment-content>
+      
+      
 
       <ion-segment-content id="trends">
         <ion-list lines="inset">
