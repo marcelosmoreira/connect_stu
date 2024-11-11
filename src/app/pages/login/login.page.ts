@@ -80,33 +80,32 @@ export class LoginPage implements OnInit {
       const googleUser = await GoogleAuth.signIn();
       console.log("Login bem-sucedido com Google.");
       
-      // Acessando dados do usuário
+     
       const userEmail = googleUser.email;
       const userName = googleUser.name;
       const serverAuthCode = googleUser.authentication.idToken;
-      // Obter o idToken necessário para autenticação no Firebase
-     // Criar as credenciais do Firebase com o idToken
-     const credential = GoogleAuthProvider.credential(serverAuthCode);
+    
+      const credential = GoogleAuthProvider.credential(serverAuthCode);
 
-    // Sign in com Firebase Authentication
-    const userCredential = await this.afAuth.signInWithCredential(credential);
-     // Verificar se o usuário já existe no Firestore
-    const userRef = this.firestore.collection('users').doc(userCredential.user?.uid);
-    const userDoc = await userRef.get().toPromise()
 
-    if (!userDoc?.exists) {
-      // Caso não exista, registrar o usuário no Firestore
-      await userRef.set({
-        email: userEmail,
-        name: userName,
-        createdAT: new Date(),
-      });
-      console.log('Novo usuário registrado no Firestore');
-    }
+      const userCredential = await this.afAuth.signInWithCredential(credential);
+ 
+      const userRef = this.firestore.collection('users').doc(userCredential.user?.uid);
+      const userDoc = await userRef.get().toPromise()
 
-    // Armazenar dados no localStorage
-    localStorage.setItem('userEmail', userEmail);
-    localStorage.setItem('userName', userName);
+      if (!userDoc?.exists) {
+        
+        await userRef.set({
+          email: userEmail,
+          name: userName,
+          createdAT: new Date(),
+        });
+        console.log('Novo usuário registrado no Firestore');
+      }
+
+     
+      localStorage.setItem('userEmail', userEmail);
+      localStorage.setItem('userName', userName);
 
       this.successMessage = 'Login com Google bem-sucedido!';
       this.errorMessage = '';
