@@ -1,0 +1,65 @@
+<ion-content class="profile-updt-content">
+  <div class="profile-updt-container">
+    <div class="circle-background">
+      <img src="assets/elements/logo.png" alt="Logo">
+    </div>
+    <h2>Alterar Dados</h2>
+    <p class="profile-updt-instruction">Atualize seus dados.</p>
+    <form [formGroup]="profileUpdateForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-input formControlName="name" labelPlacement="stacked" label="Nome" type="text">
+          <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="profileUpdateForm.get('name')?.touched && profileUpdateForm.get('name')?.invalid">
+        <p *ngIf="profileUpdateForm.get('name')?.hasError('required')" class="error-message">O nome é obrigatório.</p>
+        <p *ngIf="profileUpdateForm.get('name')?.hasError('minlength')" class="warning-message">O nome deve ter pelo menos 2
+          caracteres.</p>
+      </div>
+      <ion-item>
+        <ion-input formControlName="lastname" labelPlacement="stacked" label="Sobrenome" type="text">
+          <ion-icon slot="start" name="person-add" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="profileUpdateForm.get('lastname')?.touched && profileUpdateForm.get('lastname')?.invalid">
+       <p *ngIf="profileUpdateForm.get('lastname')?.hasError('required')" class="error-message">O sobrenome é obrigatório.
+        </p>
+        <p *ngIf="profileUpdateForm.get('lastname')?.hasError('minlength')" class="warning-message">O sobrenome deve ter pelo
+          menos 2 caracteres.</p>
+      </div>
+      <ion-item>
+        <ion-input formControlName="birthdata" labelPlacement="stacked" label="Data de Nascimento" type="date">
+          <ion-icon slot="start" name="calendar" aria-hidden="true" class="calendar-icon"
+            (click)="openDatePicker()"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="profileUpdateForm.get('birthdata')?.touched && profileUpdateForm.get('birthdata')?.invalid">
+        <p class="error-message">Data de nascimento é obrigatória.</p>
+      </div>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Usuário" type="text" formControlName="user" required>
+          <ion-icon slot="start" name="people" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="profileUpdateForm.get('user')?.touched && profileUpdateForm.get('user')?.invalid">
+        <p *ngIf="profileUpdateForm.get('user')?.hasError('required')" class="error-message">Usuário é obrigatório.</p>
+        <p *ngIf="profileUpdateForm.get('user')?.hasError('minlength')" class="warning-message">O usuário deve ter pelo menos
+          3 caracteres.</p>
+      </div>
+      <ion-item>
+        <ion-input formControlName="email" labelPlacement="stacked" label="Email" placeholder="email@domain.com"
+          type="email">
+          <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="profileUpdateForm.get('email')?.touched && profileUpdateForm.get('email')?.invalid">
+        <p *ngIf="profileUpdateForm.get('email')?.hasError('required')" class="error-message">O email é obrigatório.</p>
+        <p *ngIf="profileUpdateForm.get('email')?.hasError('email')" class="warning-message">Insira um email válido.</p>
+      </div>
+      <div class="buttons-container">
+        <ion-button [routerLink]="['/profile']" expand="full" type="submit" class="profile-updt-button">Cancelar</ion-button>
+        <ion-button expand="full" type="submit" class="profile-updt-button" [disabled]="profileUpdateForm.invalid">Atualizar</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
