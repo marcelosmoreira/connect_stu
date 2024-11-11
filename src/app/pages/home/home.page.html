@@ -2,24 +2,34 @@
   <div class="home-container">
     <div class="home-header">
       <div class="home-header-top">
-        <span><b>Connect Stu</b></span>
-        <ion-button fill="clear" class="notifications-button">
-          <ion-icon name="notifications-outline"></ion-icon>
-        </ion-button>
+        <h1><b>ConnectStu</b></h1>
+        <div class="home-header-top-container">
+          <ion-button fill="clear" class="notifications-button">
+            <ion-icon name="notifications-outline"></ion-icon>
+          </ion-button>
+          <ion-item lines="none">
+            <!-- <img [routerLink]="['/profile']" class="profile-img" src="assets/elements/logo.png" alt="user profile picture"> -->
+            <ion-img [routerLink]="['/profile']" src="assets/elements/logo.png" alt="clickable user profile picture"></ion-img>
+          </ion-item>
+          <!-- <img class="profile-img" [src]="loggedUser?.image" alt="user profile picture"> -->
+        </div>
       </div>
 
-      <ion-segment>
-        <ion-segment-button value="recentes" content-id="recentes">
-          <ion-label>Recentes</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="trends" content-id="trends">
-          <ion-label>Em Alta</ion-label>
-        </ion-segment-button>
-      </ion-segment>
+      <ion-item lines="none">
+        <ion-segment>
+          <ion-segment-button value="recentes" content-id="recentes">
+            <ion-label color="primary">Recentes</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="trends" content-id="trends">
+            <ion-label color="primary">Em Alta</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
     </div>
 
     <div class="home-search">
       <ion-item lines="none">
+        <!-- <ion-button id="open-modal" expand="block">Open</ion-button> -->
         <ion-input placeholder="O que você gostaria de saber?">
           <ion-icon slot="start" name="search-outline" aria-hidden="true"></ion-icon>
         </ion-input>
@@ -74,12 +84,33 @@
       </ion-segment-content>
     </ion-segment-view>
 
+    <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+      <ng-template>
+        <ion-footer>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cancelar</ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="confirm()" [strong]="true">Postar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+        <ion-content class="modal-content">
+          <h2><b>Nova Publicação</b></h2>
+          <ion-item class="modal-item ion-padding" lines="none">
+            <ion-textarea autoGrow="true" label="" placeholder="Faça uma pergunta ou escreva uma dica..."></ion-textarea>
+          </ion-item>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button onkeydown tab="/" aria-label="Home">
+        <ion-tab-button onkeydown [tab]="['/home']" [routerLink] aria-label="Home">
           <ion-icon name="home" aria-hidden="true"></ion-icon>
         </ion-tab-button>
-        <ion-tab-button tab="/add" aria-label="Add">
+        <ion-tab-button id="open-modal" aria-label="Add">
           <ion-icon name="add-circle-outline" aria-hidden="true"></ion-icon>
         </ion-tab-button>
         <ion-tab-button tab="/bookmarks" aria-label="Bookmarks">
