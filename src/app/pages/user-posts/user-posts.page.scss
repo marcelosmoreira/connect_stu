@@ -1,0 +1,163 @@
+ion-content {
+  --background: #007BFF;
+}
+
+ion-item {
+  --background: #ffffff;
+
+  ion-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+}
+
+ion-input {
+  color: #001F3F;
+  border: 1px solid #66b0ff;
+  border-radius: 30px;
+  padding: 0 20px !important;
+}
+
+ion-tab-bar {
+  --background: #9ecbec;
+  --color: #ffffff;
+  --height: 50px;
+  border: none;
+  font-size: 16px;
+}
+
+ion-card {
+  --background: #9ecbec;
+  --color: #000000;
+  padding: 0 10px;
+  border-radius: 30px;
+}
+
+ion-label {
+  color: #66b0ff;
+}
+
+ion-segment-view {
+  width: 100%;
+  height: 100%;
+}
+
+ion-list {
+  --background: #ffffff;
+}
+
+.list-md {
+  background: #ffffff !important;
+}
+
+.user-posts {
+  &-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    margin: auto;
+    background: white;
+  }
+
+  &-header {
+    width: 100%;
+    height: 10%;
+    margin-bottom: 5px;
+    color: #66b0ff;
+
+    &-top {
+      width: 100%;
+      font-size: 35px;
+      padding: 0 10px;
+      height: 50%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &-container {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  &-search {
+    width: 100%;
+    height: 10%;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.card-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ion-button {
+    font-size: 20px;
+  }
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.profile-img {
+  border: 1px solid #66b0ff;
+  width: 45px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.notifications-button {
+  font-size: 20px;
+}
+
+.border {
+  border: 1px solid #66b0ff;
+}
+
+.modal-item {
+  ion-textarea {
+    font-size: 20px;
+    height: 80vh;
+    color: #000000;
+  }
+
+}
+
+textarea {
+  height: 500px!important;
+}
+
+.modal-content {
+  text-align: center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}

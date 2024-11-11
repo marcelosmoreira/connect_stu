@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'profile/update',
     loadChildren: () => import('./pages/profile-update/profile-update.module').then(m => m.ProfileUpdatePageModule)
   },
+  {
+    path: 'user-posts',
+    loadChildren: () => import('./pages/user-posts/user-posts.module').then(m => m.UserPostsPageModule)
+  },
 ];
 
 @NgModule({

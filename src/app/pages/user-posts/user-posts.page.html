@@ -1,9 +1,9 @@
-<ion-content class="home-content">
-  <div class="home-container">
-    <div class="home-header">
-      <div class="home-header-top">
-        <h1><b>ConnectStu</b></h1>
-        <div class="home-header-top-container">
+<ion-content class="user-posts-content">
+  <div class="user-posts-container">
+    <div class="user-posts-header">
+      <div class="user-posts-header-top">
+        <h1><b>Suas Publicações</b></h1>
+        <div class="user-posts-header-top-container">
           <ion-button fill="clear" class="notifications-button">
             <ion-icon name="notifications-outline"></ion-icon>
           </ion-button>
@@ -14,54 +14,20 @@
           <!-- <img class="profile-img" [src]="loggedUser?.image" alt="user profile picture"> -->
         </div>
       </div>
-
-      <ion-item lines="none">
-        <ion-segment>
-          <ion-segment-button value="recentes" content-id="recentes">
-            <ion-label color="primary">Recentes</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="trends" content-id="trends">
-            <ion-label color="primary">Em Alta</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-      </ion-item>
     </div>
 
-    <div class="home-search">
+    <div class="user-posts-search">
       <ion-item lines="none">
         <!-- <ion-button id="open-modal" expand="block">Open</ion-button> -->
-        <ion-input placeholder="O que gostaria de saber?">
+        <ion-input placeholder="Pesquisar...">
           <ion-icon slot="start" name="search-outline" aria-hidden="true"></ion-icon>
         </ion-input>
       </ion-item>
     </div>
 
-    <ion-segment-view class="home-posts">
-      <ion-segment-content id="recentes">
+    <ion-segment-view class="user-posts-posts">
+      <ion-segment-content id="user-posts">
         <ion-list [scrollTop]="true">
-          <ion-item lines="none">
-            <ion-card>
-              <div class="card-content">
-                <img class="card-img" src="assets/elements/logo.png" alt="user profile picture">
-                <ion-card-content>
-                  Here's a small text description for the card content. Nothing more, nothing less.
-                </ion-card-content>
-              </div>
-              <div class="card-icons">
-                <ion-button fill="clear">
-                  <ion-icon slot="start" name="heart" aria-hidden="true"></ion-icon>
-                </ion-button>
-                <ion-button fill="clear">
-                  <ion-icon slot="start" name="chatbubbles" aria-hidden="true"></ion-icon>
-                </ion-button>
-              </div>
-            </ion-card>
-          </ion-item>
-        </ion-list>
-      </ion-segment-content>
-
-      <ion-segment-content id="trends">
-        <ion-list lines="inset">
           <ion-item lines="none">
             <ion-card>
               <div class="card-content">
